@@ -294,7 +294,7 @@ class DatabaseSeeder extends Seeder
         // Create farms and associate with locations
         $count = min(count($sampleFarms), count($spokaneLocations));
         for ($i = 0; $i < $count; $i++) {
-            $farm = \App\Models\Farm::create($sampleFarms[$i]);
+            $farm = Farm::create($sampleFarms[$i]);
             $farm->location()->create($spokaneLocations[$i]);
         }
     }
