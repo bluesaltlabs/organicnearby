@@ -2,9 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\FarmController;
-use App\Models\Farm;
-use Illuminate\Support\Facades\Gate;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
