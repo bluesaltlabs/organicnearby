@@ -13,7 +13,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "production": "vite build"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.0.1",
