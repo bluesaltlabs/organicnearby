@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FarmController;
+use App\Models\Farm;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
@@ -14,6 +15,9 @@ Route::get('dashboard', function () {
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('farms/map', function () {
+        return Inertia::render('farms/MapView');
+    })->name('farms.map');
     Route::resource('farms', FarmController::class);
 });
 
