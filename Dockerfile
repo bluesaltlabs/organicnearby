@@ -85,6 +85,9 @@ RUN cd ~ \
   && apt install nodejs \
   && cd /var/www/html
 
+# Install npm dependencies
+RUN npm ci --only=production
+
 # 5. Setup Entrypoint
 EXPOSE 8080
 
