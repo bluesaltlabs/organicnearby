@@ -23,9 +23,14 @@ console_command = 'php /var/www/html/artisan tinker'
   SESSION_SECURE_COOKIE = 'true'
   DB_CONNECTION="sqlite"
   DB_DATABASE="/var/www/html/storage/database/database.sqlite"
+  SSR_URL="ssr.process.organicnearby.internal:13714"
 
 [deploy]
   release_command = "php artisan migrate --force"
+
+[processes]
+  app=""
+  ssr="php /var/www/html/artisan inertia:start-ssr"
 
 [http_service]
   internal_port = 8080
