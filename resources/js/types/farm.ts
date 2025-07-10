@@ -12,6 +12,7 @@ export interface Farm {
   updated_at: string;
   deleted_at: string | null;
   user_id?: number | null;
+  location?: import('./location').Location | null;
 }
 
 // Factory for a blank farm (for forms)

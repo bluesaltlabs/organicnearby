@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Farm;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\LocationRules;
 
 class FarmUpdateRequest extends FormRequest
 {
@@ -21,7 +22,7 @@ class FarmUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return array_merge([
             'slug' => 'required|string|unique:farms,slug,' . $this->route('farm')?->id,
             'name' => 'required|string',
             'description' => 'nullable|string',
@@ -30,6 +31,6 @@ class FarmUpdateRequest extends FormRequest
             'is_approved' => 'boolean',
             'logo_url' => 'nullable|string',
             'website_url' => 'nullable|string',
-        ];
+        ], LocationRules::rules());
     }
 }

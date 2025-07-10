@@ -26,4 +26,9 @@ class Farm extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function location()
+    {
+        return $this->morphOne(\App\Models\Location::class, 'locationable');
+    }
 }

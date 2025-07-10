@@ -23,6 +23,9 @@ class DatabaseSeeder extends Seeder
             'create farms',
             'edit farms',
             'delete farms',
+            'create locations',
+            'edit locations',
+            'delete locations',
         ];
         foreach ($permissions as $perm) {
             Permission::firstOrCreate(['name' => $perm]);
@@ -35,7 +38,7 @@ class DatabaseSeeder extends Seeder
         // Assign all permissions to admin
         $adminRole->syncPermissions($permissions);
         // Assign only create/edit to farmer
-        $farmerRole->syncPermissions(['create farms', 'edit farms']);
+        $farmerRole->syncPermissions(['create farms', 'edit farms', 'create locations', 'edit locations']);
 
         // Create and assign roles to users
         $admin = User::factory()->create([

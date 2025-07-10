@@ -10,6 +10,7 @@ use Inertia\Response;
 use App\Http\Requests\Farm\FarmStoreRequest;
 use App\Http\Requests\Farm\FarmUpdateRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Arr;
 
 class FarmController extends Controller
 {
@@ -58,8 +59,10 @@ class FarmController extends Controller
      */
     public function edit(Farm $farm): Response
     {
+        $farm->load('location');
         return Inertia::render('farms/Edit', [
             'farm' => $farm,
+            'location' => $farm->location,
         ]);
     }
 
@@ -70,6 +73,11 @@ class FarmController extends Controller
     {
         $this->authorize('update', $farm);
         $farm->update($request->validated());
+        $locationData = $request->input('location');
+        if ($locationData) {
+            $fillable = (new \App\Models\Location)->getFillable();
+            $farm->location()->updateOrCreate([], Arr::only($locationData, $fillable));
+        }
         return Redirect::route('farms.index');
     }
 

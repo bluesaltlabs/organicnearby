@@ -34,6 +34,7 @@
         <label class="block">Approved</label>
         <input type="checkbox" v-model="form.is_approved" />
       </div>
+      <LocationEditForm v-model:location="form.location" />
       <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
     </form>
   </div>
@@ -43,18 +44,14 @@
 import { reactive } from 'vue';
 import { usePage, router } from '@inertiajs/vue3';
 import type { Farm } from '@/types/farm';
+import { blankLocation } from '@/types/location';
+import LocationEditForm from '@/components/LocationEditForm.vue';
 
 const farm = usePage().props.farm as Farm;
 
 const form = reactive({
-  name: farm.name,
-  slug: farm.slug,
-  description: farm.description,
-  phone: farm.phone,
-  email: farm.email,
-  logo_url: farm.logo_url,
-  website_url: farm.website_url,
-  is_approved: farm.is_approved,
+  ...farm,
+  location: farm.location ? { ...farm.location } : blankLocation(),
 });
 
 function submit() {
