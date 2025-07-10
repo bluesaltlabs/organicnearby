@@ -24,6 +24,10 @@ class Location extends Model
         'map_icon',
         'latitude',
         'longitude',
+        'locationable_type',
+        'locationable_id',
+        'location.locationable_type',
+        'location.locationable_id',
     ];
 
     public function locationable()
