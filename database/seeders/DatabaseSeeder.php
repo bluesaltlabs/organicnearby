@@ -53,8 +53,6 @@ class DatabaseSeeder extends Seeder
         ]);
         $farmer->assignRole($farmerRole);
 
-        $farms = Farm::factory(10)->create();
-
         // Spokane area sample locations
         $spokaneLocations = [
             [
@@ -179,9 +177,125 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        foreach ($farms as $i => $farm) {
-            $locationData = $spokaneLocations[$i % count($spokaneLocations)];
-            $farm->location()->create($locationData);
+        // Hard-coded sample farms
+        $sampleFarms = [
+            [
+                'slug' => 'green-bluff-orchard',
+                'name' => 'Green Bluff Orchard',
+                'description' => 'A family-owned orchard offering apples, cherries, and pumpkins.',
+                'phone' => '509-555-1234',
+                'email' => 'info@greenbluff.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://greenbluff.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'valley-chapel-farm',
+                'name' => 'Valley Chapel Farm',
+                'description' => 'Organic vegetables and farm tours in Spokane Valley.',
+                'phone' => '509-555-2345',
+                'email' => 'contact@valleychapel.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://valleychapel.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'wellesley-urban-farm',
+                'name' => 'Wellesley Urban Farm',
+                'description' => 'Urban farm specializing in microgreens and salad mixes.',
+                'phone' => '509-555-3456',
+                'email' => 'hello@wellesleyurban.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://wellesleyurban.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'liberty-lake-fields',
+                'name' => 'Liberty Lake Fields',
+                'description' => 'Fresh berries and pick-your-own experiences.',
+                'phone' => '509-555-4567',
+                'email' => 'info@libertylakefields.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://libertylakefields.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'cheney-prairie-farm',
+                'name' => 'Cheney Prairie Farm',
+                'description' => 'Prairie-raised beef and free-range eggs.',
+                'phone' => '509-555-5678',
+                'email' => 'info@cheneyprairie.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://cheneyprairie.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'airway-heights-acres',
+                'name' => 'Airway Heights Acres',
+                'description' => 'CSA shares and farm events near Airway Heights.',
+                'phone' => '509-555-6789',
+                'email' => 'info@airwayheightsacres.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://airwayheightsacres.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'south-hill-gardens',
+                'name' => 'South Hill Gardens',
+                'description' => 'Flower farm and seasonal farm stand.',
+                'phone' => '509-555-7890',
+                'email' => 'info@southhillgardens.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://southhillgardens.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'five-mile-prairie-farm',
+                'name' => 'Five Mile Prairie Farm',
+                'description' => 'Family farm with a focus on sustainable practices.',
+                'phone' => '509-555-8901',
+                'email' => 'info@fivemileprairie.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://fivemileprairie.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'dishman-mica-farm',
+                'name' => 'Dishman Mica Farm',
+                'description' => 'Vegetable farm serving Spokane Valley.',
+                'phone' => '509-555-9012',
+                'email' => 'info@dishmanmica.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://dishmanmica.com',
+                'user_id' => $farmer->id,
+            ],
+            [
+                'slug' => 'indian-trail-ranch',
+                'name' => 'Indian Trail Ranch',
+                'description' => 'Horse ranch and hay sales.',
+                'phone' => '509-555-0123',
+                'email' => 'info@indiantrailranch.com',
+                'is_approved' => true,
+                'logo_url' => null,
+                'website_url' => 'https://indiantrailranch.com',
+                'user_id' => $farmer->id,
+            ],
+        ];
+
+        // Create farms and associate with locations
+        $count = min(count($sampleFarms), count($spokaneLocations));
+        for ($i = 0; $i < $count; $i++) {
+            $farm = \App\Models\Farm::create($sampleFarms[$i]);
+            $farm->location()->create($spokaneLocations[$i]);
         }
     }
 }
