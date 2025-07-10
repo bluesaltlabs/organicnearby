@@ -28,7 +28,7 @@ class FarmPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->can('create farms') || ($user->is_admin ?? false);
     }
 
     /**
@@ -36,7 +36,7 @@ class FarmPolicy
      */
     public function update(User $user, Farm $farm): bool
     {
-        return ($user->is_admin ?? false) || ($farm->user_id ?? null) === $user->id;
+        return $user->can('edit farms') || ($user->is_admin ?? false) || ($farm->user_id ?? null) === $user->id;
     }
 
     /**
@@ -44,7 +44,7 @@ class FarmPolicy
      */
     public function delete(User $user, Farm $farm): bool
     {
-        return ($user->is_admin ?? false) || ($farm->user_id ?? null) === $user->id;
+        return $user->can('delete farms') || ($user->is_admin ?? false) || ($farm->user_id ?? null) === $user->id;
     }
 
     /**
