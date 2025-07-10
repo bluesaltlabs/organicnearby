@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import AppSidebarLayout from '@/layouts/app/AppSidebarLayout.vue';
 import { usePage, router } from '@inertiajs/vue3';
 import type { Farm } from '@/types/farm';
+import type { BreadcrumbItemType } from '@/types';
 
 interface PaginationLink {
   url: string | null;
@@ -15,13 +17,17 @@ interface PaginatedFarms {
 
 const farms = usePage().props.farms as PaginatedFarms;
 
+const breadcrumbs: BreadcrumbItemType[] = [
+  { title: 'Farms', href: '/admin/farms' }
+];
+
 function goTo(url: string) {
   if (url && url.length > 0) router.visit(url);
 }
 </script>
 
 <template>
-  <div>
+  <AppSidebarLayout :breadcrumbs="breadcrumbs">
     <h1 class="text-2xl font-bold mb-4 text-foreground">Farms</h1>
     <div class="overflow-x-auto rounded-xl border border-border bg-background shadow-sm">
       <table class="min-w-full divide-y divide-border bg-background text-foreground">
@@ -64,5 +70,5 @@ function goTo(url: string) {
         v-html="link.label"
       />
     </div>
-  </div>
+  </AppSidebarLayout>
 </template>

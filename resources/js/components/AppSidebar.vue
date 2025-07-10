@@ -8,13 +8,30 @@ import { Link } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
 import AppLogo from './AppLogo.vue';
 
-const mainNavItems: NavItem[] = [
-    {
+const props = defineProps({
+  admin: Boolean
+});
+
+const mainNavItems: NavItem[] = props.admin
+  ? [
+      {
+        title: 'Dashboard',
+        href: '/admin',
+        icon: LayoutGrid,
+      },
+      {
+        title: 'Farms',
+        href: '/admin/farms',
+        icon: Folder,
+      },
+    ]
+  : [
+      {
         title: 'Dashboard',
         href: '/dashboard',
         icon: LayoutGrid,
-    },
-];
+      },
+    ];
 
 const footerNavItems: NavItem[] = [
     {

@@ -4,21 +4,30 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\FarmController;
 use App\Models\Farm;
+use Illuminate\Support\Facades\Gate;
 
 Route::get('/', function () {
     return Inertia::render('Welcome');
 })->name('home');
 
+// User dashboard
 Route::get('dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Public map
+Route::get('farms', function () {
+    return Inertia::render('farms/MapView');
+})->name('farms.map');
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('farms/map', function () {
-        return Inertia::render('farms/MapView');
-    })->name('farms.map');
-    Route::resource('farms', FarmController::class);
+// Admin area
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', function () {
+        return Inertia::render('admin/Dashboard');
+    })->name('dashboard');
+
+    Route::resource('farms', App\Http\Controllers\Admin\FarmController::class);
+    // Add Route::get('maps', ...) here if you have an admin-only map page
 });
 
 require __DIR__.'/settings.php';

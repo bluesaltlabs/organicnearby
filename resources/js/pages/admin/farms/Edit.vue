@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="text-2xl font-bold mb-4">Create Farm</h1>
+  <AppLayout :breadcrumbs="breadcrumbs">
+    <h1 class="text-2xl font-bold mb-4">Edit Farm</h1>
     <form @submit.prevent="submit">
       <div class="mb-2">
         <label class="block">Name</label>
@@ -34,19 +34,35 @@
         <label class="block">Approved</label>
         <input type="checkbox" v-model="form.is_approved" />
       </div>
-      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Create</button>
+      <LocationEditForm v-model:location="form.location" />
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
     </form>
-  </div>
+  </AppLayout>
 </template>
 
 <script setup lang="ts">
+import AppLayout from '@/layouts/AppLayout.vue';
+import type { BreadcrumbItemType } from '@/types';
 import { reactive } from 'vue';
-import { router } from '@inertiajs/vue3';
-import { blankFarm } from '@/types/farm';
+import { usePage, router } from '@inertiajs/vue3';
+import type { Farm } from '@/types/farm';
+import { blankLocation } from '@/types/location';
+import LocationEditForm from '@/components/LocationEditForm.vue';
 
-const form = reactive(blankFarm());
+const farm = usePage().props.farm as Farm;
+
+const form = reactive({
+  ...farm,
+  location: farm.location ? { ...farm.location } : blankLocation(),
+});
+
+const breadcrumbs: BreadcrumbItemType[] = [
+  { title: 'Farms', href: '/admin/farms' },
+  { title: farm.name, href: `/admin/farms/${farm.id}` },
+  { title: 'Edit', href: `/admin/farms/${farm.id}/edit` }
+];
 
 function submit() {
-  router.post('/farms', form);
+  router.patch(`/admin/farms/${farm.id}`, form);
 }
 </script> 
