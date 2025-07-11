@@ -14,6 +14,8 @@
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
 
+    --pwa-theme-color: #febe0f;
+    --pwa-background-color: #1D8640;
     --color-background: var(--background);
     --color-foreground: var(--foreground);
 

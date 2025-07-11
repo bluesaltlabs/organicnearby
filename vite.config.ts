@@ -6,6 +6,7 @@ import laravel from 'laravel-vite-plugin';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 const dirname = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
 
 // More info at: https://storybook.js.org/docs/next/writing-tests/integrations/vitest-addon
@@ -23,6 +24,29 @@ export default defineConfig({
                     base: null,
                     includeAbsolute: false,
                 },
+            },
+        }),
+        VitePWA({
+            registerType: 'autoUpdate',
+            manifest: {
+                name: 'OrganicNearby',
+                short_name: 'OrganicNearby',
+                start_url: '/',
+                display: 'standalone',
+                background_color: 'var(--pwa-background-color, #1D8640)',
+                theme_color: 'var(--pwa-theme-color, #febe0f)',
+                icons: [
+                    {
+                        src: '/organicnearby.png',
+                        sizes: '192x192',
+                        type: 'image/png',
+                    },
+                    {
+                        src: '/organicnearby.png',
+                        sizes: '512x512',
+                        type: 'image/png',
+                    },
+                ],
             },
         }),
     ],
