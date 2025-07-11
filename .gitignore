@@ -34,3 +34,7 @@ docs/.vitepress/dist
 
 *storybook.log
 storybook-static
+
+**/caddy
+frankenphp
+frankenphp-worker.php
