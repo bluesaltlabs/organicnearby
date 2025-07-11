@@ -14,7 +14,7 @@ import AppFooter from '@/components/AppFooter.vue';
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Fresh local produce & products near you!</h1>
         <p class="text-lg md:text-xl text-muted-foreground mb-8">Discover, buy, and support local farms and producers in your area.</p>
         <div class="flex flex-col md:flex-row gap-4 justify-center mb-8">
-          <Link href="/farms/MapView" class="inline-block px-6 py-3 bg-green-600 text-white rounded-lg font-semibold shadow hover:bg-green-700 transition">View Farm Map</Link>
+          <Link href="/farms" class="inline-block px-6 py-3 bg-green-600 text-white rounded-lg font-semibold shadow hover:bg-green-700 transition">View Farm Map</Link>
           <Link href="/products" class="inline-block px-6 py-3 bg-card border border-green-600 text-green-700 dark:text-green-300 rounded-lg font-semibold shadow hover:bg-accent transition">Browse Products</Link>
         </div>
         <div class="max-w-xl mx-auto">
@@ -33,4 +33,4 @@ import AppFooter from '@/components/AppFooter.vue';
     </main>
     <AppFooter />
   </div>
-</template> 
+</template>
