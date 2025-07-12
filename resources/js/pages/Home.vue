@@ -15,12 +15,15 @@ import AppFooter from '@/components/AppFooter.vue';
         <p class="text-lg md:text-xl text-muted-foreground mb-8">Discover, buy, and support local farms and producers in your area.</p>
         <div class="flex flex-col md:flex-row gap-4 justify-center mb-8">
           <Link href="/farms" class="inline-block px-6 py-3 bg-green-600 text-white rounded-lg font-semibold shadow hover:bg-green-700 transition">View Farm Map</Link>
-          <Link href="/products" class="inline-block px-6 py-3 bg-card border border-green-600 text-green-700 dark:text-green-300 rounded-lg font-semibold shadow hover:bg-accent transition">Browse Products</Link>
+          <Link href="/about" class="inline-block px-6 py-3 bg-card border border-green-600 text-green-700 dark:text-green-300 rounded-lg font-semibold shadow hover:bg-accent transition">About</Link>
         </div>
+        <!--
         <div class="max-w-xl mx-auto">
           <input type="text" placeholder="Search products or farms..." class="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground placeholder:text-muted-foreground focus:ring-2 focus:ring-green-400" />
         </div>
+        -->
       </section>
+      <!--
       <section class="max-w-5xl mx-auto px-4 py-8">
         <h2 class="text-2xl font-bold mb-4">Featured Categories</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -30,6 +33,7 @@ import AppFooter from '@/components/AppFooter.vue';
           <div class="bg-card rounded-lg shadow p-4 text-center">Meat & Poultry</div>
         </div>
       </section>
+      -->
     </main>
     <AppFooter />
   </div>

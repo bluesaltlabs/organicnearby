@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
 // User dashboard
@@ -14,7 +15,6 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Public map
-
 Route::get('farms', function () {
     return Inertia::render('farms/MapView');
 })->name('farms.map');

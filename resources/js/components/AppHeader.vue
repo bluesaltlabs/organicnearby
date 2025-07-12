@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import UserMenuContent from '@/components/UserMenuContent.vue';
 import { getInitials } from '@/composables/useInitials';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from 'lucide-vue-next';
 
 // Configurable navigation menu
 const navMenu = [
-  { title: 'Products', href: '/products' },
-  { title: 'Community', href: '/community' },
+  { title: 'Farms', href: '/farms' },
   { title: 'About', href: '/about' },
   { title: 'Manage Store', href: '/admin', highlight: true },
 ];
@@ -26,7 +25,7 @@ const location = 'Spokane, WA'; // Replace with dynamic location if available
     <div class="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
       <!-- Logo Slot -->
       <Link :href="route('home')" class="flex items-center gap-x-2 mr-8">
-        <img src="/logo.png" alt="OrganicNearby Logo" class="h-8 w-auto" />
+        <img src="OrganicNearbyLogo.png" alt="OrganicNearby Logo" class="h-8 w-auto" />
         <span class="sr-only">OrganicNearby</span>
       </Link>
 
