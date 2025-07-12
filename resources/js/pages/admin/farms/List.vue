@@ -41,6 +41,7 @@ function goTo(url: string) {
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Approved</th>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Website</th>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Created</th>
+            <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -55,6 +56,18 @@ function goTo(url: string) {
               <a v-if="farm.website_url" :href="farm.website_url" target="_blank" class="text-blue-600 underline dark:text-blue-400">Visit</a>
             </td>
             <td class="px-4 py-2 border-b border-border">{{ farm.created_at }}</td>
+            <td class="px-4 py-2 border-b border-border whitespace-nowrap">
+              <button
+                class="inline-flex items-center px-2 py-1 mr-2 text-xs font-medium text-blue-700 bg-blue-100 rounded hover:bg-blue-200"
+                @click="router.visit(`/admin/farms/${farm.id}`)"
+                title="View"
+              >View</button>
+              <button
+                class="inline-flex items-center px-2 py-1 text-xs font-medium text-green-700 bg-green-100 rounded hover:bg-green-200"
+                @click="router.visit(`/admin/farms/${farm.id}/edit`)"
+                title="Edit"
+              >Edit</button>
+            </td>
           </tr>
         </tbody>
       </table>
