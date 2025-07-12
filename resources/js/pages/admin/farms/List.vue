@@ -3,6 +3,7 @@ import AppSidebarLayout from '@/layouts/app/AppSidebarLayout.vue';
 import { usePage, router } from '@inertiajs/vue3';
 import type { Farm } from '@/types/farm';
 import type { BreadcrumbItemType } from '@/types';
+import { Checkbox } from '@/components/ui/checkbox';
 
 interface PaginationLink {
   url: string | null;
@@ -34,10 +35,6 @@ function goTo(url: string) {
         <thead>
           <tr>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Name</th>
-            <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Slug</th>
-            <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Description</th>
-            <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Phone</th>
-            <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Email</th>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Approved</th>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Website</th>
             <th class="px-4 py-2 text-left font-semibold text-muted-foreground">Created</th>
@@ -47,10 +44,6 @@ function goTo(url: string) {
         <tbody>
           <tr v-for="farm in farms.data" :key="farm.id" class="odd:bg-muted even:bg-background hover:bg-accent/40 transition-colors">
             <td class="px-4 py-2 border-b border-border">{{ farm.name }}</td>
-            <td class="px-4 py-2 border-b border-border">{{ farm.slug }}</td>
-            <td class="px-4 py-2 border-b border-border">{{ farm.description }}</td>
-            <td class="px-4 py-2 border-b border-border">{{ farm.phone }}</td>
-            <td class="px-4 py-2 border-b border-border">{{ farm.email }}</td>
             <td class="px-4 py-2 border-b border-border">{{ farm.is_approved ? 'Yes' : 'No' }}</td>
             <td class="px-4 py-2 border-b border-border">
               <a v-if="farm.website_url" :href="farm.website_url" target="_blank" class="text-blue-600 underline dark:text-blue-400">Visit</a>
