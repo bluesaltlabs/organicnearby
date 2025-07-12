@@ -40,10 +40,20 @@ function updateMarkers() {
   props.farms.forEach(farm => {
     const loc = farm.location;
     if (loc && loc.latitude && loc.longitude && farm.id != null) {
+      // Build popup HTML with logo and link
+      let popupHtml = `<div style='min-width:180px'>`;
+      if (farm.logo_url) {
+        popupHtml += `<img src='${farm.logo_url}' alt='${farm.name} logo' style='width:48px;height:48px;object-fit:cover;border-radius:50%;margin-bottom:6px;display:block;' />`;
+      }
+      popupHtml += `<b>${farm.name}</b><br>`;
+      if (loc.label) popupHtml += `${loc.label}<br>`;
+      if (loc.city || loc.state) popupHtml += `<span style='font-size:12px;color:#666;'>${loc.city || ''}${loc.city && loc.state ? ', ' : ''}${loc.state || ''}</span><br>`;
+      popupHtml += `<a href='/farms/${farm.slug}' style='color:#2563eb;text-decoration:underline;font-size:14px;'>View details</a>`;
+      popupHtml += `</div>`;
       const marker = L.marker([loc.latitude, loc.longitude], {
         icon: getMarkerIcon(farm.id === props.hoveredFarmId)
       })
-        .bindPopup(`<b>${farm.name}</b><br>${loc.label || ''}`);
+        .bindPopup(popupHtml);
       marker.on('click', () => emit('select-farm', farm.id));
       markerRefs[farm.id] = marker;
       markers!.addLayer(marker);
@@ -86,4 +96,4 @@ function getMarkerIcon(highlighted: boolean) {
   width: 100%;
   height: 100%;
 }
-</style> 
+</style>

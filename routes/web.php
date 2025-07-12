@@ -14,9 +14,13 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Public map
+
 Route::get('farms', function () {
     return Inertia::render('farms/MapView');
 })->name('farms.map');
+
+// Farm detail page by slug
+Route::get('farms/{farm:slug}', [\App\Http\Controllers\FarmController::class, 'show'])->name('farms.show');
 
 // Admin area
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
